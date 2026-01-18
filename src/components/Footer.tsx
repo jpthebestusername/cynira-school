@@ -1,63 +1,66 @@
 import { motion } from "framer-motion";
-import { GraduationCap, Facebook, Instagram, Youtube, Heart } from "lucide-react";
+import { Instagram, Youtube, Facebook, Linkedin, Heart, ArrowUpRight } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const links = {
     institucional: [
-      { name: "Sobre a Escola", href: "#sobre" },
-      { name: "Proposta Pedagógica", href: "#" },
-      { name: "Infraestrutura", href: "#diferenciais" },
-      { name: "Equipe", href: "#" },
+      { name: "Sobre", href: "#sobre" },
+      { name: "Diferenciais", href: "#diferenciais" },
+      { name: "Infraestrutura", href: "#" },
+      { name: "Equipe Pedagógica", href: "#" },
     ],
-    servicos: [
+    ensino: [
       { name: "Educação Infantil", href: "#" },
       { name: "Ensino Fundamental", href: "#" },
       { name: "Ensino Médio", href: "#" },
       { name: "Período Integral", href: "#" },
     ],
-    atendimento: [
-      { name: "Fale Conosco", href: "#contato" },
+    acesso: [
+      { name: "Área do Aluno", href: "#alunos" },
+      { name: "Calendário", href: "#calendario" },
+      { name: "Contato", href: "#contato" },
       { name: "Trabalhe Conosco", href: "#" },
-      { name: "Portal do Aluno", href: "#" },
-      { name: "Portal do Responsável", href: "#" },
     ],
   };
 
   const socials = [
-    { icon: Facebook, href: "#", label: "Facebook" },
     { icon: Instagram, href: "#", label: "Instagram" },
     { icon: Youtube, href: "#", label: "Youtube" },
+    { icon: Facebook, href: "#", label: "Facebook" },
+    { icon: Linkedin, href: "#", label: "LinkedIn" },
   ];
 
   return (
-    <footer className="bg-primary text-primary-foreground">
-      <div className="container mx-auto px-4 py-16">
+    <footer className="relative bg-muted/30 border-t border-border overflow-hidden">
+      {/* Background Glow */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full blur-3xl"
+        style={{ background: "radial-gradient(circle, hsl(var(--primary) / 0.05) 0%, transparent 60%)" }}
+      />
+
+      <div className="container mx-auto px-4 py-16 relative z-10">
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Logo & Description */}
           <div className="lg:col-span-2">
             <motion.a
               href="#inicio"
-              className="flex items-center gap-3 mb-6 group"
-              whileHover={{ scale: 1.02 }}
+              className="inline-flex items-center gap-3 mb-6 group"
+              whileHover={{ x: 5 }}
             >
-              <div className="w-12 h-12 rounded-full bg-primary-foreground/10 flex items-center justify-center border border-primary-foreground/20">
-                <GraduationCap className="w-7 h-7" />
+              <div className="w-12 h-12 rounded-lg bg-primary flex items-center justify-center glow-primary">
+                <span className="font-display text-2xl text-primary-foreground">C</span>
               </div>
               <div>
-                <h3 className="font-display text-xl font-bold">
-                  Sinira Stoucco Fausto
+                <h3 className="font-display text-xl tracking-wider text-foreground">
+                  CYNIRA STTOUCO <span className="text-primary">FAUSTO</span>
                 </h3>
-                <p className="text-sm text-primary-foreground/70">
-                  Educação que transforma
-                </p>
+                <p className="text-xs text-muted-foreground tracking-widest">O FUTURO COMEÇA AQUI</p>
               </div>
             </motion.a>
 
-            <p className="text-primary-foreground/80 leading-relaxed mb-6 max-w-md">
-              Há mais de 25 anos formando cidadãos conscientes e preparados para
-              o futuro através de uma educação de qualidade.
+            <p className="text-muted-foreground font-body leading-relaxed mb-6 max-w-md">
+              Mais de 25 anos formando líderes do amanhã com inovação, tecnologia e excelência acadêmica.
             </p>
 
             {/* Social Links */}
@@ -68,7 +71,7 @@ const Footer = () => {
                   href={social.href}
                   whileHover={{ scale: 1.1, y: -3 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary-foreground/20 transition-colors"
+                  className="w-11 h-11 rounded-xl bg-muted flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all"
                   aria-label={social.label}
                 >
                   <social.icon className="w-5 h-5" />
@@ -79,48 +82,54 @@ const Footer = () => {
 
           {/* Links */}
           <div>
-            <h4 className="font-semibold text-lg mb-4">Institucional</h4>
+            <h4 className="font-display text-lg text-foreground mb-5">INSTITUCIONAL</h4>
             <ul className="space-y-3">
               {links.institucional.map((link) => (
                 <li key={link.name}>
-                  <a
+                  <motion.a
                     href={link.href}
-                    className="text-primary-foreground/70 hover:text-primary-foreground transition-colors"
+                    whileHover={{ x: 5 }}
+                    className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors font-body group"
                   >
                     {link.name}
-                  </a>
+                    <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </motion.a>
                 </li>
               ))}
             </ul>
           </div>
 
           <div>
-            <h4 className="font-semibold text-lg mb-4">Ensino</h4>
+            <h4 className="font-display text-lg text-foreground mb-5">ENSINO</h4>
             <ul className="space-y-3">
-              {links.servicos.map((link) => (
+              {links.ensino.map((link) => (
                 <li key={link.name}>
-                  <a
+                  <motion.a
                     href={link.href}
-                    className="text-primary-foreground/70 hover:text-primary-foreground transition-colors"
+                    whileHover={{ x: 5 }}
+                    className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors font-body group"
                   >
                     {link.name}
-                  </a>
+                    <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </motion.a>
                 </li>
               ))}
             </ul>
           </div>
 
           <div>
-            <h4 className="font-semibold text-lg mb-4">Atendimento</h4>
+            <h4 className="font-display text-lg text-foreground mb-5">ACESSO RÁPIDO</h4>
             <ul className="space-y-3">
-              {links.atendimento.map((link) => (
+              {links.acesso.map((link) => (
                 <li key={link.name}>
-                  <a
+                  <motion.a
                     href={link.href}
-                    className="text-primary-foreground/70 hover:text-primary-foreground transition-colors"
+                    whileHover={{ x: 5 }}
+                    className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors font-body group"
                   >
                     {link.name}
-                  </a>
+                    <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </motion.a>
                 </li>
               ))}
             </ul>
@@ -128,14 +137,29 @@ const Footer = () => {
         </div>
 
         {/* Bottom */}
-        <div className="mt-12 pt-8 border-t border-primary-foreground/10 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-primary-foreground/60 text-sm text-center md:text-left">
-            © {currentYear} Escola Sinira Stoucco Fausto. Todos os direitos reservados.
+        <div className="mt-16 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-muted-foreground text-sm font-body text-center md:text-left">
+            © {currentYear} Escola Cynira Sttouco Fausto. Todos os direitos reservados.
           </p>
-          <p className="text-primary-foreground/60 text-sm flex items-center gap-1">
-            Feito com <Heart className="w-4 h-4 text-accent fill-accent" /> para a educação
+          <p className="text-muted-foreground text-sm font-body flex items-center gap-2">
+            Feito com <Heart className="w-4 h-4 text-primary fill-primary animate-pulse" /> para a educação
           </p>
         </div>
+      </div>
+
+      {/* Marquee */}
+      <div className="border-t border-border bg-muted/50 overflow-hidden py-4">
+        <motion.div
+          animate={{ x: [0, -1920] }}
+          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+          className="flex gap-8 whitespace-nowrap"
+        >
+          {Array.from({ length: 10 }).map((_, i) => (
+            <span key={i} className="font-display text-4xl text-muted-foreground/20 tracking-wider">
+              CYNIRA STTOUCO FAUSTO • O FUTURO COMEÇA AQUI • EDUCAÇÃO QUE TRANSFORMA •
+            </span>
+          ))}
+        </motion.div>
       </div>
     </footer>
   );

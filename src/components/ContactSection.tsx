@@ -1,65 +1,93 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle, Sparkles, MessageSquare } from "lucide-react";
 
 const ContactSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    serie: "",
+    message: "",
+  });
 
   const contactInfo = [
     {
       icon: MapPin,
-      title: "Endereço",
-      content: "Rua das Flores, 1234 - Centro",
-      subContent: "São Paulo - SP, 01234-567",
+      title: "ENDEREÇO",
+      content: "Rua da Educação, 1234",
+      subContent: "Centro - São Paulo, SP",
+      color: "primary",
     },
     {
       icon: Phone,
-      title: "Telefone",
+      title: "TELEFONE",
       content: "(11) 1234-5678",
       subContent: "(11) 91234-5678",
+      color: "secondary",
     },
     {
       icon: Mail,
-      title: "E-mail",
-      content: "contato@sinirastoucco.edu.br",
-      subContent: "matriculas@sinirastoucco.edu.br",
+      title: "E-MAIL",
+      content: "contato@cynirasttouco.edu.br",
+      subContent: "matriculas@cynirasttouco.edu.br",
+      color: "accent",
     },
     {
       icon: Clock,
-      title: "Horário",
+      title: "HORÁRIO",
       content: "Segunda a Sexta: 7h às 18h",
       subContent: "Sábado: 8h às 12h",
+      color: "warm",
     },
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
+    setTimeout(() => {
+      setIsSubmitted(false);
+      setFormData({ name: "", phone: "", email: "", serie: "", message: "" });
+    }, 3000);
   };
 
   return (
-    <section id="contato" ref={ref} className="py-20 lg:py-32 bg-background">
-      <div className="container mx-auto px-4">
-        {/* Header */}
+    <section id="contato" ref={ref} className="relative py-24 lg:py-40 overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          className="absolute bottom-0 left-1/4 w-96 h-96 rounded-full blur-3xl"
+          style={{ background: "radial-gradient(circle, hsl(var(--primary) / 0.1) 0%, transparent 60%)" }}
+        />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-16"
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-2 bg-secondary/10 text-secondary rounded-full text-sm font-medium mb-6">
-            Fale Conosco
-          </span>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            Venha <span className="text-primary">Nos Conhecer</span>
+          <motion.span
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 mb-6"
+          >
+            <MessageSquare className="w-4 h-4 text-primary" />
+            <span className="text-sm font-medium text-primary tracking-wider">FALE CONOSCO</span>
+          </motion.span>
+
+          <h2 className="font-display text-5xl md:text-7xl lg:text-8xl text-foreground mb-6">
+            VAMOS
+            <br />
+            <span className="text-gradient">CONVERSAR?</span>
           </h2>
-          <p className="text-lg text-muted-foreground">
-            Agende uma visita e conheça nossa estrutura. Teremos o prazer de
-            apresentar nossa proposta pedagógica e tirar todas as suas dúvidas.
+
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-body">
+            Agende uma visita e conheça nossa estrutura. Estamos ansiosos para recebê-lo!
           </p>
         </motion.div>
 
@@ -70,26 +98,27 @@ const ContactSection = () => {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-            <h3 className="font-display text-2xl font-bold text-foreground mb-8">
-              Informações de Contato
+            <h3 className="font-display text-3xl text-foreground mb-8">
+              INFORMAÇÕES DE <span className="text-primary">CONTATO</span>
             </h3>
 
-            <div className="space-y-6">
+            <div className="space-y-4">
               {contactInfo.map((info, index) => (
                 <motion.div
                   key={info.title}
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: 0.2 + index * 0.1, duration: 0.5 }}
-                  className="flex gap-4 p-4 bg-muted rounded-xl hover:bg-muted/80 transition-colors group cursor-pointer"
+                  whileHover={{ x: 10 }}
+                  className="flex gap-4 p-5 rounded-xl card-glass card-hover-glow cursor-pointer group"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                    <info.icon className="w-6 h-6 text-primary group-hover:text-primary-foreground" />
+                  <div className={`w-14 h-14 rounded-xl bg-${info.color}/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform`}>
+                    <info.icon className={`w-7 h-7 text-${info.color}`} />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">{info.title}</h4>
-                    <p className="text-muted-foreground">{info.content}</p>
-                    <p className="text-muted-foreground text-sm">{info.subContent}</p>
+                    <h4 className="font-display text-lg text-foreground mb-1">{info.title}</h4>
+                    <p className="text-muted-foreground font-body">{info.content}</p>
+                    <p className="text-sm text-muted-foreground/70 font-body">{info.subContent}</p>
                   </div>
                 </motion.div>
               ))}
@@ -99,13 +128,14 @@ const ContactSection = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              className="mt-8 rounded-2xl overflow-hidden border border-border h-[200px] bg-muted flex items-center justify-center"
+              transition={{ delay: 0.6 }}
+              className="mt-8 rounded-2xl overflow-hidden border border-border h-[200px] bg-muted/30 flex items-center justify-center relative group cursor-pointer"
             >
-              <div className="text-center text-muted-foreground">
-                <MapPin className="w-10 h-10 mx-auto mb-2 text-primary" />
-                <p>Localização no mapa</p>
+              <div className="text-center">
+                <MapPin className="w-12 h-12 mx-auto mb-3 text-primary animate-pulse" />
+                <p className="text-muted-foreground font-body">Clique para abrir no Google Maps</p>
               </div>
+              <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
             </motion.div>
           </motion.div>
 
@@ -115,12 +145,13 @@ const ContactSection = () => {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="bg-card p-8 rounded-2xl shadow-xl border border-border">
-              <h3 className="font-display text-2xl font-bold text-foreground mb-2">
-                Solicite Informações
-              </h3>
-              <p className="text-muted-foreground mb-8">
-                Preencha o formulário e entraremos em contato em breve.
+            <div className="p-8 rounded-2xl card-glass">
+              <div className="flex items-center gap-3 mb-6">
+                <Sparkles className="w-6 h-6 text-primary" />
+                <h3 className="font-display text-2xl text-foreground">SOLICITE INFORMAÇÕES</h3>
+              </div>
+              <p className="text-muted-foreground mb-8 font-body">
+                Preencha o formulário e nossa equipe entrará em contato em até 24 horas.
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-5">
@@ -132,7 +163,9 @@ const ContactSection = () => {
                     <input
                       type="text"
                       required
-                      className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full px-4 py-3 bg-muted border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-foreground placeholder:text-muted-foreground"
                       placeholder="Seu nome"
                     />
                   </div>
@@ -143,7 +176,9 @@ const ContactSection = () => {
                     <input
                       type="tel"
                       required
-                      className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="w-full px-4 py-3 bg-muted border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-foreground placeholder:text-muted-foreground"
                       placeholder="(11) 99999-9999"
                     />
                   </div>
@@ -156,7 +191,9 @@ const ContactSection = () => {
                   <input
                     type="email"
                     required
-                    className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="w-full px-4 py-3 bg-muted border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-foreground placeholder:text-muted-foreground"
                     placeholder="seu@email.com"
                   />
                 </div>
@@ -165,7 +202,11 @@ const ContactSection = () => {
                   <label className="block text-sm font-medium text-foreground mb-2">
                     Série de interesse
                   </label>
-                  <select className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all">
+                  <select 
+                    value={formData.serie}
+                    onChange={(e) => setFormData({ ...formData, serie: e.target.value })}
+                    className="w-full px-4 py-3 bg-muted border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-foreground"
+                  >
                     <option value="">Selecione...</option>
                     <option value="infantil">Educação Infantil</option>
                     <option value="fundamental1">Ensino Fundamental I</option>
@@ -180,7 +221,9 @@ const ContactSection = () => {
                   </label>
                   <textarea
                     rows={4}
-                    className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all resize-none"
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    className="w-full px-4 py-3 bg-muted border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all resize-none text-foreground placeholder:text-muted-foreground"
                     placeholder="Como podemos ajudar?"
                   />
                 </div>
@@ -190,21 +233,21 @@ const ContactSection = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   disabled={isSubmitted}
-                  className={`w-full py-4 rounded-xl font-semibold text-lg flex items-center justify-center gap-2 transition-all btn-glow ${
+                  className={`w-full py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-3 transition-all ${
                     isSubmitted
                       ? "bg-success text-primary-foreground"
-                      : "bg-primary text-primary-foreground hover:bg-primary/90"
+                      : "bg-primary text-primary-foreground btn-neon"
                   }`}
                 >
                   {isSubmitted ? (
                     <>
-                      <CheckCircle className="w-5 h-5" />
-                      Mensagem Enviada!
+                      <CheckCircle className="w-6 h-6" />
+                      MENSAGEM ENVIADA!
                     </>
                   ) : (
                     <>
                       <Send className="w-5 h-5" />
-                      Enviar Mensagem
+                      ENVIAR MENSAGEM
                     </>
                   )}
                 </motion.button>
