@@ -97,31 +97,40 @@ const StudentArea = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="lg:col-span-2 space-y-4"
           >
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, x: -30 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.3 + index * 0.1 }}
-                whileHover={{ x: 10 }}
-                onClick={() => setActiveTab(index)}
-                className={`p-6 rounded-xl cursor-pointer transition-all duration-300 ${
-                  activeTab === index 
-                    ? 'card-glass border-l-4 border-primary glow-primary' 
-                    : 'bg-muted/30 hover:bg-muted/50 border-l-4 border-transparent'
-                }`}
-              >
-                <div className="flex items-start gap-4">
-                  <div className={`w-12 h-12 rounded-lg bg-${feature.color}/10 flex items-center justify-center flex-shrink-0`}>
-                    <feature.icon className={`w-6 h-6 text-${feature.color}`} />
+            {features.map((feature, index) => {
+              const colorClasses = {
+                primary: { bg: "bg-primary/10", text: "text-primary" },
+                secondary: { bg: "bg-secondary/10", text: "text-secondary" },
+                accent: { bg: "bg-accent/10", text: "text-accent" },
+                warm: { bg: "bg-orange-500/10", text: "text-orange-500" },
+              };
+              const colors = colorClasses[feature.color as keyof typeof colorClasses];
+
+              return (
+                <motion.div
+                  key={feature.title}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ delay: 0.2 + index * 0.08 }}
+                  onClick={() => setActiveTab(index)}
+                  className={`p-4 md:p-6 rounded-xl cursor-pointer transition-all duration-300 ${
+                    activeTab === index 
+                      ? 'card-glass border-l-4 border-primary glow-primary' 
+                      : 'bg-muted/30 hover:bg-muted/50 border-l-4 border-transparent'
+                  }`}
+                >
+                  <div className="flex items-start gap-3 md:gap-4">
+                    <div className={`w-10 h-10 md:w-12 md:h-12 rounded-lg ${colors.bg} flex items-center justify-center flex-shrink-0`}>
+                      <feature.icon className={`w-5 h-5 md:w-6 md:h-6 ${colors.text}`} />
+                    </div>
+                    <div>
+                      <h3 className="font-display text-lg md:text-xl text-foreground mb-1">{feature.title}</h3>
+                      <p className="text-xs md:text-sm text-muted-foreground">{feature.description}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-display text-xl text-foreground mb-1">{feature.title}</h3>
-                    <p className="text-sm text-muted-foreground">{feature.description}</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
           </motion.div>
 
           {/* Right - Portal Preview */}

@@ -147,19 +147,15 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Marquee */}
-      <div className="border-t border-border bg-muted/50 overflow-hidden py-4">
-        <motion.div
-          animate={{ x: [0, -1920] }}
-          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-          className="flex gap-8 whitespace-nowrap"
-        >
-          {Array.from({ length: 10 }).map((_, i) => (
-            <span key={i} className="font-display text-4xl text-muted-foreground/20 tracking-wider">
-              CYNIRA STTOUCO FAUSTO • O FUTURO COMEÇA AQUI • EDUCAÇÃO QUE TRANSFORMA •
+      {/* Marquee - Simplified for Mobile */}
+      <div className="border-t border-border bg-muted/50 overflow-hidden py-3 md:py-4">
+        <div className="animate-marquee flex gap-8 whitespace-nowrap">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <span key={i} className="font-display text-2xl md:text-4xl text-muted-foreground/20 tracking-wider">
+              CYNIRA STTOUCO FAUSTO • O FUTURO COMEÇA AQUI •
             </span>
           ))}
-        </motion.div>
+        </div>
       </div>
     </footer>
   );

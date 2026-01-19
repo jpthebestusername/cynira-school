@@ -113,58 +113,59 @@ const FeaturesSection = () => {
 
         {/* Features Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((feature, index) => (
-            <motion.div
-              key={feature.title}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              className={`group relative p-8 rounded-2xl card-glass card-hover-glow cursor-pointer overflow-hidden`}
-            >
-              {/* Background Gradient on Hover */}
+          {features.map((feature, index) => {
+            const colorClasses = {
+              primary: { bg: "bg-primary/10", text: "text-primary", gradient: "from-primary/20 to-primary/5" },
+              secondary: { bg: "bg-secondary/10", text: "text-secondary", gradient: "from-secondary/20 to-secondary/5" },
+              accent: { bg: "bg-accent/10", text: "text-accent", gradient: "from-accent/20 to-accent/5" },
+              warm: { bg: "bg-orange-500/10", text: "text-orange-500", gradient: "from-orange-500/20 to-orange-500/5" },
+            };
+            const colors = colorClasses[feature.color as keyof typeof colorClasses];
+
+            return (
               <motion.div
-                className={`absolute inset-0 bg-gradient-to-br ${feature.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
-              />
+                key={feature.title}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: index * 0.08 }}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                className="group relative p-6 md:p-8 rounded-2xl card-glass card-hover-glow cursor-pointer overflow-hidden"
+              >
+                {/* Background Gradient on Hover */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${colors.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
 
-              {/* Content */}
-              <div className="relative z-10">
-                {/* Icon */}
-                <motion.div
-                  className={`w-16 h-16 rounded-xl bg-${feature.color}/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
-                  whileHover={{ rotate: [0, -10, 10, 0] }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <feature.icon className={`w-8 h-8 text-${feature.color}`} />
-                </motion.div>
+                {/* Content */}
+                <div className="relative z-10">
+                  {/* Icon */}
+                  <div className={`w-12 h-12 md:w-16 md:h-16 rounded-xl ${colors.bg} flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                    <feature.icon className={`w-6 h-6 md:w-8 md:h-8 ${colors.text}`} />
+                  </div>
 
-                {/* Text */}
-                <h3 className="font-display text-2xl text-foreground mb-1">
-                  {feature.title}
-                </h3>
-                <p className={`text-sm text-${feature.color} font-medium tracking-wider mb-4`}>
-                  {feature.subtitle}
-                </p>
-                <p className="text-muted-foreground font-body leading-relaxed">
-                  {feature.description}
-                </p>
+                  {/* Text */}
+                  <h3 className="font-display text-xl md:text-2xl text-foreground mb-1">
+                    {feature.title}
+                  </h3>
+                  <p className={`text-xs md:text-sm ${colors.text} font-medium tracking-wider mb-3 md:mb-4`}>
+                    {feature.subtitle}
+                  </p>
+                  <p className="text-sm md:text-base text-muted-foreground font-body leading-relaxed">
+                    {feature.description}
+                  </p>
 
-                {/* Arrow on Hover */}
-                <motion.div
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: hoveredIndex === index ? 1 : 0, x: hoveredIndex === index ? 0 : -10 }}
-                  className="flex items-center gap-2 mt-6 text-primary font-medium"
-                >
-                  <span className="text-sm">SAIBA MAIS</span>
-                  <ChevronRight className="w-4 h-4" />
-                </motion.div>
-              </div>
-
-              {/* Corner Accent */}
-              <div className={`absolute top-0 right-0 w-20 h-20 bg-${feature.color}/5 rounded-bl-[100px] -z-10`} />
-            </motion.div>
-          ))}
+                  {/* Arrow on Hover - Desktop Only */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: hoveredIndex === index ? 1 : 0, x: hoveredIndex === index ? 0 : -10 }}
+                    className="hidden md:flex items-center gap-2 mt-6 text-primary font-medium"
+                  >
+                    <span className="text-sm">SAIBA MAIS</span>
+                    <ChevronRight className="w-4 h-4" />
+                  </motion.div>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* Bottom CTA */}
