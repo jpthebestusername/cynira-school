@@ -159,16 +159,17 @@ const CalendarSection = () => {
               </div>
 
               {/* Weekdays */}
-              <div className="grid grid-cols-7 gap-2 mb-4">
-                {["DOM", "SEG", "TER", "QUA", "QUI", "SEX", "SÁB"].map(day => (
-                  <div key={day} className="text-center text-xs text-muted-foreground font-medium py-2">
-                    {day}
+              <div className="grid grid-cols-7 gap-1 md:gap-2 mb-4">
+                {["D", "S", "T", "Q", "Q", "S", "S"].map((day, i) => (
+                  <div key={i} className="text-center text-[10px] md:text-xs text-muted-foreground font-medium py-2">
+                    <span className="md:hidden">{day}</span>
+                    <span className="hidden md:inline">{["DOM", "SEG", "TER", "QUA", "QUI", "SEX", "SÁB"][i]}</span>
                   </div>
                 ))}
               </div>
 
               {/* Days Grid */}
-              <div className="grid grid-cols-7 gap-2">
+              <div className="grid grid-cols-7 gap-1 md:gap-2">
                 {emptyDays.map(i => (
                   <div key={`empty-${i}`} className="aspect-square" />
                 ))}
@@ -177,28 +178,22 @@ const CalendarSection = () => {
                   const hasEvent = dayEvents.length > 0;
 
                   return (
-                    <motion.button
+                    <button
                       key={day}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
                       onClick={() => hasEvent && setSelectedEvent(dayEvents[0])}
-                      className={`aspect-square rounded-xl flex flex-col items-center justify-center relative transition-all ${
+                      className={`aspect-square rounded-lg md:rounded-xl flex flex-col items-center justify-center relative transition-all active:scale-95 ${
                         hasEvent 
-                          ? `${getEventColor(dayEvents[0].type)} border cursor-pointer hover:shadow-lg` 
-                          : 'bg-muted/30 hover:bg-muted/50'
+                          ? `${getEventColor(dayEvents[0].type)} border cursor-pointer` 
+                          : 'bg-muted/30'
                       }`}
                     >
-                      <span className={`font-display text-lg ${hasEvent ? '' : 'text-foreground'}`}>
+                      <span className={`font-display text-sm md:text-lg ${hasEvent ? '' : 'text-foreground'}`}>
                         {day}
                       </span>
                       {hasEvent && (
-                        <motion.div
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-primary animate-pulse"
-                        />
+                        <div className="absolute -top-0.5 -right-0.5 md:-top-1 md:-right-1 w-2 h-2 md:w-3 md:h-3 rounded-full bg-primary" />
                       )}
-                    </motion.button>
+                    </button>
                   );
                 })}
               </div>
