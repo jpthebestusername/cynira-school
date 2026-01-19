@@ -67,7 +67,10 @@ const HeroSection = () => {
             className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl leading-[0.9] mb-4 md:mb-6"
           >
             <span className="block text-foreground">ESCOLA</span>
-            <span className="block text-gradient py-1">CYNIRA STTOUCO</span>
+            <span className="block text-gradient py-1">
+              <span className="block sm:inline">CYNIRA</span>{" "}
+              <span className="block sm:inline">STTOUCO</span>
+            </span>
             <span className="block text-foreground">FAUSTO</span>
           </motion.h1>
 
@@ -116,7 +119,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="flex justify-center gap-6 md:gap-16 overflow-x-auto pb-4 px-4 -mx-4 md:mx-0 md:overflow-visible"
+            className="flex justify-start sm:justify-center gap-6 md:gap-16 overflow-x-auto pb-4 px-4 md:px-0 md:overflow-visible"
           >
             {stats.map((stat) => (
               <div key={stat.label} className="flex-shrink-0 group">

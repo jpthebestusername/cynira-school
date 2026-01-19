@@ -118,7 +118,7 @@ const FeaturesSection = () => {
               primary: { bg: "bg-primary/10", text: "text-primary", gradient: "from-primary/20 to-primary/5" },
               secondary: { bg: "bg-secondary/10", text: "text-secondary", gradient: "from-secondary/20 to-secondary/5" },
               accent: { bg: "bg-accent/10", text: "text-accent", gradient: "from-accent/20 to-accent/5" },
-              warm: { bg: "bg-orange-500/10", text: "text-orange-500", gradient: "from-orange-500/20 to-orange-500/5" },
+              warm: { bg: "bg-warm/10", text: "text-warm", gradient: "from-warm/20 to-warm/5" },
             };
             const colors = colorClasses[feature.color as keyof typeof colorClasses];
 

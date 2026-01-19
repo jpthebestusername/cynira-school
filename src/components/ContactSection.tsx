@@ -103,25 +103,34 @@ const ContactSection = () => {
             </h3>
 
             <div className="space-y-4">
-              {contactInfo.map((info, index) => (
-                <motion.div
-                  key={info.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.2 + index * 0.1, duration: 0.5 }}
-                  whileHover={{ x: 10 }}
-                  className="flex gap-4 p-5 rounded-xl card-glass card-hover-glow cursor-pointer group"
-                >
-                  <div className={`w-14 h-14 rounded-xl bg-${info.color}/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform`}>
-                    <info.icon className={`w-7 h-7 text-${info.color}`} />
-                  </div>
-                  <div>
-                    <h4 className="font-display text-lg text-foreground mb-1">{info.title}</h4>
-                    <p className="text-muted-foreground font-body">{info.content}</p>
-                    <p className="text-sm text-muted-foreground/70 font-body">{info.subContent}</p>
-                  </div>
-                </motion.div>
-              ))}
+              {contactInfo.map((info, index) => {
+                const colorClasses = {
+                  primary: { bg: "bg-primary/10", text: "text-primary" },
+                  secondary: { bg: "bg-secondary/10", text: "text-secondary" },
+                  accent: { bg: "bg-accent/10", text: "text-accent" },
+                  warm: { bg: "bg-warm/10", text: "text-warm" },
+                };
+                const colors = colorClasses[info.color as keyof typeof colorClasses];
+
+                return (
+                  <motion.div
+                    key={info.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: 0.2 + index * 0.1, duration: 0.5 }}
+                    className="flex gap-4 p-4 md:p-5 rounded-xl card-glass card-hover-glow cursor-pointer group"
+                  >
+                    <div className={`w-12 h-12 md:w-14 md:h-14 rounded-xl ${colors.bg} flex items-center justify-center flex-shrink-0`}>
+                      <info.icon className={`w-6 h-6 md:w-7 md:h-7 ${colors.text}`} />
+                    </div>
+                    <div className="min-w-0">
+                      <h4 className="font-display text-lg text-foreground mb-1">{info.title}</h4>
+                      <p className="text-muted-foreground font-body break-words">{info.content}</p>
+                      <p className="text-sm text-muted-foreground/70 font-body break-all">{info.subContent}</p>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
 
             {/* Map Placeholder */}
