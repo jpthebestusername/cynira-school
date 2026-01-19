@@ -57,7 +57,7 @@ const StudentArea = () => {
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/30 to-background" />
         <motion.div
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full blur-3xl"
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-[120vw] h-[120vw] max-w-[800px] max-h-[800px] rounded-full blur-3xl pointer-events-none"
           style={{ background: "radial-gradient(circle, hsl(var(--secondary) / 0.08) 0%, transparent 60%)" }}
         />
       </div>
@@ -102,7 +102,7 @@ const StudentArea = () => {
                 primary: { bg: "bg-primary/10", text: "text-primary" },
                 secondary: { bg: "bg-secondary/10", text: "text-secondary" },
                 accent: { bg: "bg-accent/10", text: "text-accent" },
-                warm: { bg: "bg-orange-500/10", text: "text-orange-500" },
+                warm: { bg: "bg-warm/10", text: "text-warm" },
               };
               const colors = colorClasses[feature.color as keyof typeof colorClasses];
 
@@ -148,10 +148,10 @@ const StudentArea = () => {
                   <div className="w-3 h-3 rounded-full bg-warm/50" />
                   <div className="w-3 h-3 rounded-full bg-success/50" />
                 </div>
-                <div className="flex-1 mx-4">
-                  <div className="flex items-center gap-2 px-4 py-2 bg-muted rounded-lg">
-                    <Lock className="w-4 h-4 text-success" />
-                    <span className="text-sm text-muted-foreground">portal.cynirasttouco.edu.br</span>
+                <div className="flex-1 mx-3 md:mx-4 min-w-0">
+                  <div className="flex items-center gap-2 px-3 md:px-4 py-2 bg-muted rounded-lg min-w-0">
+                    <Lock className="w-4 h-4 text-success flex-shrink-0" />
+                    <span className="text-xs md:text-sm text-muted-foreground truncate">portal.cynirasttouco.edu.br</span>
                   </div>
                 </div>
               </div>
@@ -176,7 +176,7 @@ const StudentArea = () => {
                 {/* Achievements */}
                 <div>
                   <h5 className="font-display text-lg text-foreground mb-4">ÚLTIMAS CONQUISTAS</h5>
-                  <div className="grid grid-cols-3 gap-3">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                     {achievements.map((achievement, index) => (
                       <motion.div
                         key={achievement.label}
@@ -196,8 +196,8 @@ const StudentArea = () => {
                   </div>
                 </div>
 
-                {/* Quick Stats */}
-                <div className="grid grid-cols-4 gap-4 pt-4 border-t border-border">
+                 {/* Quick Stats */}
+                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-border">
                   <div className="text-center">
                     <p className="font-display text-2xl text-primary">9.2</p>
                     <p className="text-[10px] text-muted-foreground">MÉDIA</p>

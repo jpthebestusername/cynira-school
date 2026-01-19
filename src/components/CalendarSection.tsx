@@ -144,7 +144,7 @@ const CalendarSection = () => {
                   <ChevronLeft className="w-6 h-6 text-foreground" />
                 </motion.button>
 
-                <h3 className="font-display text-3xl md:text-4xl text-foreground">
+                <h3 className="font-display text-xl sm:text-3xl md:text-4xl text-foreground text-center leading-tight break-words">
                   {months[currentMonth]} <span className="text-primary">{currentYear}</span>
                 </h3>
 
