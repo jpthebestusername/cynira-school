@@ -69,7 +69,7 @@ const HeroSection = () => {
             <span className="block text-foreground">ESCOLA</span>
             <span className="block text-gradient py-1">
               <span className="block sm:inline">CYNIRA</span>{" "}
-              <span className="block sm:inline">STTOUCO</span>
+              <span className="block sm:inline">STOCCO</span>
             </span>
             <span className="block text-foreground">FAUSTO</span>
           </motion.h1>

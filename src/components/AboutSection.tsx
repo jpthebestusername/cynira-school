@@ -117,7 +117,7 @@ const AboutSection = () => {
 
             <div className="space-y-6 font-body text-lg text-muted-foreground leading-relaxed">
               <p>
-                A <span className="text-foreground font-semibold">Escola Cynira Sttouco Fausto</span> não é apenas um lugar de aprendizado – 
+                A <span className="text-foreground font-semibold">Escola Cynira Stocco Fausto</span> não é apenas um lugar de aprendizado – 
                 é um <span className="text-primary">ecossistema de inovação</span> onde cada aluno descobre seu potencial único.
               </p>
               

@@ -151,7 +151,7 @@ const StudentArea = () => {
                 <div className="flex-1 mx-3 md:mx-4 min-w-0">
                   <div className="flex items-center gap-2 px-3 md:px-4 py-2 bg-muted rounded-lg min-w-0">
                     <Lock className="w-4 h-4 text-success flex-shrink-0" />
-                    <span className="text-xs md:text-sm text-muted-foreground truncate">portal.cynirasttouco.edu.br</span>
+                    <span className="text-xs md:text-sm text-muted-foreground truncate">portal.cynirastocco.edu.br</span>
                   </div>
                 </div>
               </div>
