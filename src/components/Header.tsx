@@ -52,7 +52,7 @@ const Header = () => {
             </div>
             <div className="hidden sm:block">
               <h1 className="font-display text-xl tracking-wider text-foreground">
-                CYNIRA STTOUCO <span className="text-primary">FAUSTO</span>
+                CYNIRA STOCCO <span className="text-primary">FAUSTO</span>
               </h1>
               <p className="text-xs text-muted-foreground font-body tracking-widest">O FUTURO COMEÇA AQUI</p>
             </div>

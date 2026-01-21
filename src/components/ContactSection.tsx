@@ -32,8 +32,8 @@ const ContactSection = () => {
     {
       icon: Mail,
       title: "E-MAIL",
-      content: "contato@cynirasttouco.edu.br",
-      subContent: "matriculas@cynirasttouco.edu.br",
+      content: "contato@cynirastocco.edu.br",
+      subContent: "matriculas@cynirastocco.edu.br",
       color: "accent",
     },
     {

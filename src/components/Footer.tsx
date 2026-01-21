@@ -53,7 +53,7 @@ const Footer = () => {
               </div>
               <div>
                 <h3 className="font-display text-xl tracking-wider text-foreground">
-                  CYNIRA STTOUCO <span className="text-primary">FAUSTO</span>
+                  CYNIRA STOCCO <span className="text-primary">FAUSTO</span>
                 </h3>
                 <p className="text-xs text-muted-foreground tracking-widest">O FUTURO COMEÇA AQUI</p>
               </div>
@@ -139,7 +139,7 @@ const Footer = () => {
         {/* Bottom */}
         <div className="mt-16 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-muted-foreground text-sm font-body text-center md:text-left">
-            © {currentYear} Escola Cynira Sttouco Fausto. Todos os direitos reservados.
+            © {currentYear} Escola Cynira Stocco Fausto. Todos os direitos reservados.
           </p>
           <p className="text-muted-foreground text-sm font-body flex items-center gap-2">
             Feito com <Heart className="w-4 h-4 text-primary fill-primary animate-pulse" /> para a educação
@@ -152,7 +152,7 @@ const Footer = () => {
         <div className="animate-marquee flex gap-8 whitespace-nowrap">
           {Array.from({ length: 4 }).map((_, i) => (
             <span key={i} className="font-display text-2xl md:text-4xl text-muted-foreground/20 tracking-wider">
-              CYNIRA STTOUCO FAUSTO • O FUTURO COMEÇA AQUI •
+              CYNIRA STOCCO FAUSTO • O FUTURO COMEÇA AQUI •
             </span>
           ))}
         </div>

@@ -150,7 +150,7 @@ export default function LoadingScreen({ onLoadingComplete }: LoadingScreenProps)
   const [isVisible, setIsVisible] = useState(true);
   
   const logoText = "CYNIRA";
-  const subText = "SCHOOL";
+  const subText = "STOCCO";
   
   // Calculate which letters should be visible based on progress
   const visibleLogoLetters = Math.floor((progress / 100) * logoText.length);
